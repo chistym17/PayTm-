@@ -1,6 +1,13 @@
+"use client"
+import { getServerSession } from 'next-auth';
 import React from 'react';
+import { authOptions } from '../lib/auth';
 
-const Navbar = ({ }) => {
+ function Navbar() {
+  // const session=await getServerSession(authOptions);
+  // console.log(session);
+
+
   return (
     <nav className="flex items-center justify-between bg-gray-800 p-4  w-full z-10 fixed top-0">
       <div className="text-white">website</div>
@@ -11,7 +18,16 @@ const Navbar = ({ }) => {
           <li><a href="/profile" className="hover:text-gray-300">Profile</a></li>
         </ul>
       </div>
-      <div className="text-white">Signed in as chisty</div>
+     {/* <div>
+     {
+        session?      <div className="text-white">{session?.user.email}
+        
+        <button onClick={async()=>await signOut()}>signout</button>
+        </div>
+       :<button onClick={async()=> await signIn()}>signin</button>
+      }
+
+     </div> */}
     </nav>
   );
 }
