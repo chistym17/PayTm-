@@ -1,58 +1,68 @@
 "use client"
-import { Select } from "@repo/ui/Select";
-import { TextInput } from "@repo/ui/TextInput";
-import { Button } from "@repo/ui/button";
-import { Card } from "@repo/ui/card";
-import { useState } from "react";
+import React, { useState } from 'react';
+import createtransactions from '../lib/actions/createtransactions';
 
-const SUPPORTED_BANKS = [{
-    name: "Brac Bank",
-    redirectUrl: "https://netbanking.hdfcbank.com"
-}, {
-    name: "Net Bank",
-    redirectUrl: "https://www.axisbank.com/"
-}];
+const AddMoneyCard: React.FC = () => {
+  const [amount, setAmount] = useState<number>(0);
+  const [bankOption, setBankOption] = useState<string>('');
 
-export const AddMoney = () => {
-    const [amount, setAmount] = useState<number>(0);
-    const [selectedBank, setSelectedBank] = useState<string>(SUPPORTED_BANKS[0]?.name);
+  const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAmount(Number(e.target.value));
+  };
 
-    const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setAmount(Number(e.target.value));
-    };
+  const handleBankChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setBankOption(e.target.value);
+  };
 
-    const handleBankChange = (value: string) => {
-        setSelectedBank(value);
-    };
+  const handleAddMoney = async() => {
+    console.log('Amount:', amount);
+    console.log('Bank Option:', bankOption);
+   const res= await createtransactions(bankOption,amount);
+   console.log(res);
+    setAmount(0)
 
-    const handleAddMoney = () => {
-        const bank = SUPPORTED_BANKS.find(bank => bank.name === selectedBank);
-        if (bank) {
-            window.location.href = bank.redirectUrl;
-        }
-    };
+  };
 
-    return (
-        <div className="bg-purple-300 w-full h-full flex justify-center items-center">
-            <Card title="Add Money" className="w-96">
-                <div className="w-full p-4 text-black font-bold">
-                    <TextInput
-                        label="Amount"
-                        placeholder="Enter amount"
-                        type="number"
-                        value={amount.toString()}
-                        onChange={(e) => handleAmountChange(e)}
-                    />
-                    <div className="py-4 text-left font-bold text-black">Bank</div>
-                    <Select
-                        onSelect={(value) => handleBankChange(value)}
-                        options={SUPPORTED_BANKS.map(bank => ({ key: bank.name, value: bank.name }))}
-                    />
-                    <div className="flex justify-center mt-6 text-black">
-                        <Button onClick={handleAddMoney}>Add Money</Button>
-                    </div>
-                </div>
-            </Card>
-        </div>
-    );
+  return (
+    <div className="w-96 mx-auto mt-8 p-6 bg-purple-300 rounded-lg shadow-md">
+      <h2 className="text-lg font-bold mb-4 text-black text-center">Add Money</h2>
+      <div>
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="amount">
+          Amount
+        </label>
+        <input
+          className="w-full bg-white text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-500"
+          type="number"
+          id="amount"
+          placeholder="Enter amount"
+          onChange={handleAmountChange}
+        />
+      </div>
+      <div className="mt-4">
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="bankOption">
+          Bank Option
+        </label>
+        <select
+          className="w-full bg-white text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-500"
+          id="bankOption"
+          value={bankOption}
+          onChange={handleBankChange}
+        >
+          <option value="">Select Bank</option>
+          <option value="brac">BRAC Bank</option>
+          <option value="netbank">NetBank</option>
+        </select>
+      </div>
+      <div className="mt-6">
+        <button
+          className="w-full bg-purple-700 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+          onClick={handleAddMoney}
+        >
+          Add Money
+        </button>
+      </div>
+    </div>
+  );
 };
+
+export default AddMoneyCard;

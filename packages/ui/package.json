@@ -6,7 +6,12 @@
     "./button": "./src/button.tsx",
     "./card": "./src/card.tsx",
     "./code": "./src/code.tsx",
-    "./Appbar": "./src/Appbar.tsx"
+    "./TextInput": "./src/Textinput.tsx",
+    "./Select": "./src/Select.tsx",
+    "./Center": "./src/Center.tsx"
+
+
+
 
   },
   "scripts": {

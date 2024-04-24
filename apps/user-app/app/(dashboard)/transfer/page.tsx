@@ -2,7 +2,7 @@ import { BalanceCard } from "../../../components/BalanceCard";
 import { OnRampTransactions } from "../../../components/OnRampTransactions";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../lib/auth";
-import { AddMoney } from "../../../components/AddMoney";
+import AddMoneyCard from "../../../components/AddMoney";
 import {  PrismaClient } from "@prisma/client";
 
 const prisma=new PrismaClient()
@@ -45,7 +45,7 @@ export default async function() {
         </div>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 p-4">
             <div>
-                <AddMoney />
+                <AddMoneyCard />
             </div>
             <div>
                 <BalanceCard amount={balance.amount} locked={balance.locked} />

@@ -11,14 +11,14 @@ export const OnRampTransactions = ({
     }[]
 }) => {
     if (!transactions.length) {
-        return <Card title="Recent Transactions">
-            <div className="text-center pb-8 pt-8">
+        return <Card title="Recent Transactions ">
+            <div className="text-center pb-8 pt-8 bg-purple-300 p-6 w-96 text-black font-semibold">
                 No Recent transactions
             </div>
         </Card>
     }
     return <Card title="Recent Transactions">
-        <div className="pt-2">
+        <div className="pt-2 w-96 bg-purple-300 text-black shadow-md p-5">
             {transactions.map(t => <div className="flex justify-between">
                 <div>
                     <div className="text-sm">
