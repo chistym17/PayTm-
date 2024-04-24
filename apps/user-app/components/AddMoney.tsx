@@ -5,7 +5,6 @@ import createtransactions from '../lib/actions/createtransactions';
 const AddMoneyCard: React.FC = () => {
   const [amount, setAmount] = useState<number>(0);
   const [bankOption, setBankOption] = useState<string>('');
-
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAmount(Number(e.target.value));
   };
@@ -19,7 +18,7 @@ const AddMoneyCard: React.FC = () => {
     console.log('Bank Option:', bankOption);
    const res= await createtransactions(bankOption,amount);
    console.log(res);
-    setAmount(0)
+   window.location.href = 'http://localhost:3000/';
 
   };
 
