@@ -1,6 +1,8 @@
 "use client"
 import React, { useState } from 'react';
 import createtransactions from '../lib/actions/createtransactions';
+import axios from 'axios'; 
+import setCookies from '../lib/actions/setcookies';
 
 const AddMoneyCard: React.FC = () => {
   const [amount, setAmount] = useState<number>(0);
@@ -16,9 +18,10 @@ const AddMoneyCard: React.FC = () => {
   const handleAddMoney = async() => {
     console.log('Amount:', amount);
     console.log('Bank Option:', bankOption);
-   const res= await createtransactions(bankOption,amount);
-   console.log(res);
-   window.location.href = 'http://localhost:3000/';
+  //  const res= await createtransactions(bankOption,amount);
+  //  console.log(res);
+   await setCookies()
+  //  window.location.href = 'http://localhost:3000/';
 
   };
 
