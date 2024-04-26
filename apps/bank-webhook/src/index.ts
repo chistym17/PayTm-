@@ -2,21 +2,22 @@ import { PrismaClient } from "@prisma/client";
 import express from "express";
 
 const app = express();
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
+
 const prisma = new PrismaClient();
 
-// POST endpoint for HDFC webhook
 app.post("/hdfcWebhook", async (req, res) => {
     const paymentInformation = {
-        token: req.body.token,
-        userId: req.body.user_identifier,
+        userId: req.body.id,
         amount: req.body.amount
     };
     console.log(paymentInformation);
 
-    try {
-        await prisma.balance.update({
+    try {    
+      const bal=  await prisma.balance.update({
             where: {
-                userId: Number(paymentInformation.userId)
+                userId: paymentInformation.userId
             },
             data: {
                 amount: {
@@ -24,15 +25,16 @@ app.post("/hdfcWebhook", async (req, res) => {
                 }
             }
         });
+        console.log(bal);
 
-        await prisma.onRampTransaction.update({
-            where: {
-                token: paymentInformation.token
-            },
-            data: {
-                status: 'Success'
-            }
-        });
+        // await prisma.onRampTransaction.update({
+        //     where: {
+        //         token: paymentInformation.token
+        //     },
+        //     data: {
+        //         status: 'Success'
+        //     }
+        // });
 
         res.json({
             message: "Captured"

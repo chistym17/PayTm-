@@ -1,11 +1,15 @@
 "use client"
 
 import React from 'react';
+import completetransaction from '../lib/actions/completetransaction';
 
 const BankingPage = () => {
-    const handleSubmit = (e) => {
+   
+    const handleSubmit = async(e) => {
         e.preventDefault();
-        // You can implement logic to handle the form submission here
+        const amount=e.target.amount.value
+       const res= await completetransaction(amount)
+       console.log(res)
     };
 
     return (

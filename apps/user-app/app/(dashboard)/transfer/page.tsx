@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../../lib/auth";
 import AddMoneyCard from "../../../components/AddMoney";
 import {  PrismaClient } from "@prisma/client";
+import createwallet from "../../../components/createwallet";
 
 const prisma=new PrismaClient()
 
@@ -14,6 +15,14 @@ async function getBalance() {
             userId: Number(session?.user?.id)
         }
     });
+    console.log('here-',balance)
+    if(!balance)
+        {
+           const res= await createwallet()
+
+           console.log(res);
+
+        }
     return {
         amount: balance?.amount || 0,
         locked: balance?.locked || 0

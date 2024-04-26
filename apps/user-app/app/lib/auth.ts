@@ -44,7 +44,7 @@ export const authOptions = {
                         password: hashedPassword
                     }
                 });
-            
+
                 return {
                     id: user.id.toString(),
                     name: user.name,

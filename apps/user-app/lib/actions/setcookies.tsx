@@ -10,7 +10,7 @@ async function setCookies() {
   console.log(session)
   try {
     cookies().set({
-      name: session?.user?.name,
+      name: 'user',
       value: session?.user?.id,
       httpOnly: true,
       path: '/',
