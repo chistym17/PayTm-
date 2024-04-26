@@ -1,7 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { Providers, ThemeProvider } from "../provider";
+import { Providers } from "../provider";
 
 const inter = Inter({ subsets: ["latin"] });
 const theme = {
@@ -25,9 +25,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-      <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <Providers>{children}</Providers>
-        </ThemeProvider>
+         <Providers>
+          <div className="min-w-screen min-h-screen bg-[#ebe6e6]">
+            {children}
+          </div>
+          </Providers>
 
       </body>
     </html>

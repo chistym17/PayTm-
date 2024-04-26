@@ -4,12 +4,14 @@ import getuserinfo from "./getuserinfo";
 import axios from 'axios'
 
 async function completetransaction  (amount:Number)  {
-    const id=await getuserinfo()
-    if(!id)return{
-        message:"Not Authorized"
-    }
+    const inf=await getuserinfo()
+    // if(!inf?.id || !inf?.token )return{
+    //     message:"Not Authorized"
+    // }
+    console.log(inf)
     const info={
-        id:id,
+        id:inf.id,
+        token:inf.token,
         amount:amount
 
     }

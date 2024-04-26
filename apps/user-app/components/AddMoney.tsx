@@ -20,8 +20,7 @@ const AddMoneyCard: React.FC = () => {
     console.log('Amount:', amount);
     console.log('Bank Option:', bankOption);
     const res = await createtransactions(bankOption, amount);
-    console.log(res);
-    await setCookies()
+    if(res.token)await setCookies(res.token)
     window.location.href = 'http://localhost:3000/';
 
   };

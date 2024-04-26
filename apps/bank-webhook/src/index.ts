@@ -10,8 +10,23 @@ const prisma = new PrismaClient();
 app.post("/hdfcWebhook", async (req, res) => {
     const paymentInformation = {
         userId: req.body.id,
+        token:req.body.token,
         amount: req.body.amount
     };
+
+
+    const transaction = await prisma.onRampTransaction.findUnique({
+        where: {
+            token: paymentInformation.token
+        }
+    });
+
+    if (!transaction || transaction.status !== 'Processing') {
+            return  res.json({
+            message: "transaction already completed"
+        });
+    }
+
     console.log(paymentInformation);
 
     try {    
@@ -27,14 +42,15 @@ app.post("/hdfcWebhook", async (req, res) => {
         });
         console.log(bal);
 
-        // await prisma.onRampTransaction.update({
-        //     where: {
-        //         token: paymentInformation.token
-        //     },
-        //     data: {
-        //         status: 'Success'
-        //     }
-        // });
+       const tra= await prisma.onRampTransaction.update({
+            where: {
+                token: paymentInformation.token
+            },
+            data: {
+                status: 'Success'
+            }
+        });
+        console.log('hi',tra)
 
         res.json({
             message: "Captured"

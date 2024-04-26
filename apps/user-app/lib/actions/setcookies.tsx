@@ -5,13 +5,20 @@ import jwt from 'jsonwebtoken';
 import { authOptions } from '../../app/lib/auth';
 import { cookies } from 'next/headers';
 
-async function setCookies() {
+async function setCookies(token:string) {
   const session=await getServerSession(authOptions)
   console.log(session)
   try {
     cookies().set({
       name: 'user',
       value: session?.user?.id,
+      httpOnly: true,
+      path: '/',
+    })
+
+    cookies().set({
+      name: 'token',
+      value: token,
       httpOnly: true,
       path: '/',
     })
