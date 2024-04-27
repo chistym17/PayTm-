@@ -14,7 +14,6 @@ app.post("/hdfcWebhook", async (req, res) => {
         amount: req.body.amount
     };
 
-
     const transaction = await prisma.onRampTransaction.findUnique({
         where: {
             token: paymentInformation.token
@@ -22,48 +21,48 @@ app.post("/hdfcWebhook", async (req, res) => {
     });
 
     if (!transaction || transaction.status !== 'Processing') {
-            return  res.json({
-            message: "transaction already completed"
+        return res.status(400).json({
+            message: "Transaction already completed",
+            error: "TransactionError"
         });
     }
 
     console.log(paymentInformation);
-
-    try {    
-      const bal=  await prisma.balance.update({
-            where: {
-                userId: paymentInformation.userId
-            },
-            data: {
-                amount: {
-                    increment: Number(paymentInformation.amount)
+    try {
+        await prisma.$transaction([
+            prisma.balance.update({
+                where: {
+                    userId: Number(paymentInformation.userId)
+                },
+                data: {
+                    amount: {
+                        increment: Number(paymentInformation.amount)
+                    }
                 }
-            }
-        });
-        console.log(bal);
+            }),
+            prisma.onRampTransaction.updateMany({
+                where: {
+                    token: paymentInformation.token
+                }, 
+                data: {
+                    status: "Success",
+                }
+            })
+        ]);
 
-       const tra= await prisma.onRampTransaction.update({
-            where: {
-                token: paymentInformation.token
-            },
-            data: {
-                status: 'Success'
-            }
+        res.status(200).json({
+            message: "Transaction Captured"
         });
-        console.log('hi',tra)
-
-        res.json({
-            message: "Captured"
-        });
-    } catch (e) {
+    } catch(e) {
         console.error(e);
         res.status(500).json({
-            message: "Error while processing webhook"
+            message: "Error while processing webhook",
+            error: "ServerError"
         });
     }
 });
 
-// GET endpoint to check server health
+
 app.get("/health", (req, res) => {
     res.status(200).json({
         message: "Server is running and healthy"

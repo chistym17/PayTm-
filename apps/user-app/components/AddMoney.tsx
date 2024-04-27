@@ -4,6 +4,7 @@ import createtransactions from '../lib/actions/createtransactions';
 import axios from 'axios';
 import setCookies from '../lib/actions/setcookies';
 import createwallet from './createwallet';
+import { toast } from "react-hot-toast";
 
 const AddMoneyCard: React.FC = () => {
   const [amount, setAmount] = useState<number>(0);
@@ -17,13 +18,30 @@ const AddMoneyCard: React.FC = () => {
   };
 
   const handleAddMoney = async () => {
-    console.log('Amount:', amount);
-    console.log('Bank Option:', bankOption);
-    const res = await createtransactions(bankOption, amount);
-    if(res.token)await setCookies(res.token)
-    window.location.href = 'http://localhost:3000/';
-
+    try {
+      if (!bankOption || !amount) {
+        toast.error('Bank and amount fields cannot be empty');
+        return;
+      }
+  
+      toast.success('Processing...');
+      const res = await createtransactions(bankOption, amount);
+      if (res && res.token) {
+        await setCookies(res.token);
+        toast.success('Transaction processing. Redirecting to bank...');
+        setTimeout(() => {
+          window.location.href = 'http://localhost:3000/';
+        }, 2000); 
+      } else {
+        toast.error('Unexpected response from server');
+      }
+    } catch (error) {
+      toast.error('Error when fetching');
+      console.error(error); 
+    }
   };
+  
+  
 
   return (
     <div className="w-96 mx-auto mt-8 p-6 bg-purple-300 rounded-lg shadow-md">

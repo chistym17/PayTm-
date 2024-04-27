@@ -2,15 +2,49 @@
 
 import React from 'react';
 import completetransaction from '../lib/actions/completetransaction';
+import toast from 'react-hot-toast';
+import { ClearCookies } from '../lib/actions/clearcookies';
 
 const BankingPage = () => {
-   
-    const handleSubmit = async(e) => {
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const amount=e.target.amount.value
-       const res= await completetransaction(amount)
-       console.log(res)
+        const amount = e.target.amount.value;
+        if (!amount) {
+            toast.error('Amount field cannot be empty');
+            return;
+        }
+    
+        try {
+            toast.success('Processing...');
+            const response = await completetransaction(amount);
+            console.log(response)
+            if (response.message === "Not Authorized") {
+                toast.error('Not Authorized');
+            } else if (response.message === "Transaction already completed") {
+                toast.error('Transaction already completed');
+
+            } else if (response.message === "Transaction Captured") {
+                toast.success('Transaction completed successfully');
+                setTimeout(async() => {
+                    await ClearCookies()
+                    toast.success('Redirecting to your wallet...')
+
+                    window.location.href = 'http://localhost:3001/transfer';
+                  }, 2000);
+
+            } 
+            else {
+                toast.error('Unexpected response from server');
+            }
+        } catch (error) {
+            toast.error('Error completing transaction');
+            console.error(error);
+        }
+
+    
     };
+    
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-purple-300">

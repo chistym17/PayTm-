@@ -1,33 +1,33 @@
 "use client"
 import { getServerSession } from 'next-auth';
 import React from 'react';
-import { authOptions } from '../lib/auth';
+import { authOptions } from '../app/lib/auth';
+import { signIn, signOut } from 'next-auth/react';
+import Userbar from './userbar';
+import Link from 'next/link';
 
- function Navbar() {
-  // const session=await getServerSession(authOptions);
-  // console.log(session);
 
 
+function Navbar() {
   return (
     <nav className="flex items-center justify-between bg-gray-800 p-4  w-full z-10 fixed top-0">
-      <div className="text-white">website</div>
+      <div className="text-white">paytm</div>
       <div className="text-white">
         <ul className="flex space-x-4">
-          <li><a href="/" className="hover:text-gray-300">Home</a></li>
-          <li><a href="/about" className="hover:text-gray-300">About</a></li>
-          <li><a href="/profile" className="hover:text-gray-300">Profile</a></li>
+          <li>
+            <Link href='/'> <a  className="hover:text-gray-300">Home</a></Link>
+
+          </li>
+
+          <li>            <Link href='/transfer'> <a className="hover:text-gray-300">Transfer</a></Link>
+          </li>
+          <li>            <Link href='/'> <a  className="hover:text-gray-300">Profile</a></Link>
+          </li>
         </ul>
       </div>
-     {/* <div>
-     {
-        session?      <div className="text-white">{session?.user.email}
-        
-        <button onClick={async()=>await signOut()}>signout</button>
-        </div>
-       :<button onClick={async()=> await signIn()}>signin</button>
-      }
-
-     </div> */}
+      <div>
+        {/* {session?.user.email} */}
+      </div>
     </nav>
   );
 }
