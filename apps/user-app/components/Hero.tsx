@@ -4,7 +4,7 @@ import { SparklesCore } from "./sparkles";
 
 export function Hero() {
   return (
-    <div className="h-[40rem] w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md">
+    <div className="h-[450px] w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md">
       <h1 className="md:text-3xl text-2xl lg:text-3xl font-semibold text-center text-white relative z-20">
        Simplify Your Transactions with PayLink
       </h1>
