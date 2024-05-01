@@ -9,6 +9,10 @@ import './globals.css'
 import { AppBar } from "../components/Appbar";
 import { Cards } from "../components/Cards";
 import Typewriter from "../components/TypeAnimation";
+import UserBar from "../components/userbar";
+import { WobbleCard } from "../components/userlogin";
+import Feature from "../components/Feature";
+import Feat from "../components/Feat";
 // export default async function Page() {
 //   // const session = await getServerSession(authOptions);
 //   // if (session?.user) {
@@ -54,24 +58,33 @@ const page = () => {
     <div className="">
       <AppBar navItems={navItems} className="" />
 
-      <div className=" max-w-6xl  h-[400px] mx-auto ">
+      <div className=" max-w-6xl  h-[100vh] mx-auto ">
 
-        <div className=" text-black py-20 px-4 md:px-10 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4"><span className="text-purple-500 ">Paylink</span></h1>
-          <p className="text-lg md:text-xl mb-8">Your trusted platform for seamless money transfers and financial management</p>
-          <Typewriter text='Connect. Transfer. Empower'></Typewriter>
-          {/* <h2 className="text-2xl md:text-3xl font-semibold">r.Connect. Transfer. Empowe</h2> */}
+        <div>
+          <div className=" text-black py-20 px-4 md:px-10 text-center">
+            <h1 className="text-5xl md:text-6xl font-bold mb-4"><span className="text-purple-500 ">Paylink</span></h1>
+            <p className="text-lg md:text-xl mb-8">Your trusted platform for seamless money transfers and financial management</p>
+            <div className="h-[20px]">
+              <Typewriter text='Connect. Transfer. Empower'></Typewriter>
+
+            </div>
+          </div>
+
+          <UserBar></UserBar>
+
         </div>
 
 
       </div>
 
-      <div className="mt-20 max-w-6xl mx-auto">
-        <Cards items={items}></Cards>
 
+      <div className="mt-20 max-w-6xl mx-auto">
+        <Feature></Feature>
+        <Feat></Feat>
 
 
       </div>
+
 
 
 
