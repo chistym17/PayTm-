@@ -1,50 +1,61 @@
-// pages/signin.tsx
 "use client"
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { signIn } from 'next-auth/react';
+import toast from 'react-hot-toast';
 
-export default function page() {
+export default function SignIn  ()  {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    toast.loading("please wait...",{
+      duration:3000
+    })
+
     const result = await signIn('credentials', {
+      redirect: false, 
+      name,
       email,
       password,
-      redirect: false, // Prevent automatic redirection
     });
-    console.log(result)
-    // if (!result.error) {
-    //   // If no error, user is successfully authenticated
-    //   // Redirect to the desired page
-    //   window.location.href = '/dashboard';
-    // } else {
-    //   // Handle sign-in errors
-    //   console.error(result.error);
-    //   // Show error message to the user
-    //   alert('Failed to sign in');
-    // }
+
+    if (!result.error) {
+      console.log('Sign-in successful!');
+      toast.success("SignIn Successful.")
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 2000); 
+    } else {
+      toast.error("Error.Try Again.")
+      console.error('Sign-in failed:', result.error);
+    }
   };
 
   return (
-    <div>
-      <h1>Sign In</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Sign In</button>
-      </form>
+    <div className="flex justify-center items-center h-screen">
+      <div className="w-96 bg-white p-8 rounded-xl border border-black">
+        <h2 className="text-2xl font-semibold mb-4 text-center">Sign In</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label htmlFor="name" className="block text-black text-sm font-medium">Name</label>
+            <input type="text" id="name" className="form-input rounded-lg mt-1 block w-full border border-black" value={name} onChange={(e) => setName(e.target.value)} />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="email" className="block text-black text-sm font-medium">Email</label>
+            <input type="email" id="email" className="form-input rounded-lg mt-1 block w-full border border-black" value={email} onChange={(e) => setEmail(e.target.value)} />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="password" className="block text-black text-sm font-medium">Password</label>
+            <input type="password" id="password" className="form-input rounded-lg mt-1 block w-full border border-black" value={password} onChange={(e) => setPassword(e.target.value)} />
+          </div>
+          <div className="text-center">
+            <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md shadow-md transition duration-300">Sign In</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
-}
+};
+
