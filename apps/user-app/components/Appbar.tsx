@@ -1,4 +1,3 @@
-"use client";
 import React, { useState } from "react";
 import {
   motion,
@@ -8,10 +7,6 @@ import {
 } from "framer-motion";
 import { cn } from "./utils/cn";
 import Link from "next/link";
-
-
-
-
 
 
 export const AppBar = ({
@@ -25,6 +20,9 @@ export const AppBar = ({
   }[];
   className?: string;
 }) => {
+
+
+
   const { scrollYProgress } = useScroll();
 
   const [visible, setVisible] = useState(false);
@@ -77,9 +75,12 @@ export const AppBar = ({
             <span className="hidden sm:block text-sm">{navItem.name}</span>
           </Link>
         ))}
-        <button className="border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full">
+        <button
+          className="border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full"
+        
+        >
           <span>Login</span>
-          <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent  h-px" />
+          <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent h-px" />
         </button>
       </motion.div>
     </AnimatePresence>
