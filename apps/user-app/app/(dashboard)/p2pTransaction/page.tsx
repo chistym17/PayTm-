@@ -1,8 +1,9 @@
 import { BalanceCard } from "../../../components/BalanceCard";
 import P2Ptransactioncard from "../../../components/p2ptransaction";
+import { ShowP2P } from "../../../components/showp2ptransaction";
 import { getBalance } from "../transfer/page";
 
-const page = async() => {
+const page = async () => {
     const balance = await getBalance();
 
     return <div className="w-screen">
@@ -15,8 +16,12 @@ const page = async() => {
             </div>
             <div>
                 <BalanceCard amount={balance.amount} locked={balance.locked} />
-             
+                <div className="pt-4">
+                    <ShowP2P></ShowP2P>
+                </div>
             </div>
+
+
         </div>
     </div>
 }

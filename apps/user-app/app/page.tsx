@@ -15,51 +15,20 @@ import Feature from "../components/Feature";
 import Feat from "../components/Feat";
 import Footer from "../components/Footer";
 
-// export default async function Page() {
-//   // const session = await getServerSession(authOptions);
-//   // if (session?.user) {
-//   //   redirect('/')
-//   // } else {
-//   //   redirect('/api/auth/signin')
-
-//   // }
-//   return (
-
-//   )
-
-
-// }
 
 const navItems = [
   { name: "Home", link: "/" },
-  { name: "About", link: "/about" },
-  { name: "Contact", link: "/contact" }
-];
-
-const items = [
-  {
-    title: "P2P Transactions",
-    description: "Easily send and receive money directly to and from friends, family, or anyone else with just a few taps. Enjoy seamless peer-to-peer transactions without any hassle.",
-    link: "/p2p-transactions",
-  },
-  {
-    title: "Bank Transfer",
-    description: "Transfer money from your bank account to anyone, anywhere, anytime. With our secure and reliable bank transfer feature, you can conveniently manage your finances.",
-    link: "/bank-transfer",
-  },
-  {
-    title: "Personalized Profile",
-    description: "Create your own profile and personalize it according to your preferences. Showcase your interests, connect with others, and manage your account with ease.",
-    link: "/profile",
-  },
+  { name: "Transfer", link: "/transfer" },
+  { name: "Send", link: "/p2ptransaction" }
 ];
 
 
-const page = () => {
+
+const page = async() => {
   return (
     <div className="max-w-6xl mx-auto">
       <AppBar navItems={navItems} className="" />
-
+  
       <div className=" max-w-6xl  h-[100vh] mx-auto  ">
 
         <div>

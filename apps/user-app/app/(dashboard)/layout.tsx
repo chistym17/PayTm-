@@ -9,9 +9,9 @@ export default function Layout({
     <div className="flex bg-purple-200">
         <div className="w-72 border-r border-slate-300 min-h-screen mr-4 pt-28">
             <div>
-                <SidebarItem href={"/dashboard"} icon={<HomeIcon />} title="Home" />
-                <SidebarItem href={"/transfer"} icon={<TransferIcon />} title="Transfer" />
-                <SidebarItem href={"/transactions"} icon={<TransactionsIcon />} title="Transactions" />
+                <SidebarItem href={"/"} icon={<HomeIcon />} title="Home" />
+                <SidebarItem href={"/transfer"} icon={<TransferIcon />} title="Transfer from Bank" />
+                <SidebarItem href={"/p2pTransaction"} icon={<TransactionsIcon />} title="Send Money" />
             </div>
         </div>
             {children}
