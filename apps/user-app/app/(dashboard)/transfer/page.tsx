@@ -8,14 +8,13 @@ import createwallet from "../../../components/createwallet";
 
 const prisma=new PrismaClient()
 
-async function getBalance() {
+export async function getBalance() {
     const session = await getServerSession(authOptions);
     const balance = await prisma.balance.findFirst({
         where: {
             userId: Number(session?.user?.id)
         }
     });
-    console.log('here-',balance)
     if(!balance)
         {
            const res= await createwallet()
