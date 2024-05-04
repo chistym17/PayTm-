@@ -2,18 +2,21 @@ import { getServerSession } from "next-auth";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
+import toast from "react-hot-toast";
 
 const UserBar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { data: session, status } = useSession();
 
   const handlesignin = () => {
+    toast('Redirecting to SignIn page...')
     window.location.href = '/SignIn'
 
   }
 
   const handlesignout = () => {
     signOut()
+    toast.success('SignOut successful')
 
   }
 

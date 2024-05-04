@@ -21,7 +21,7 @@ const P2Ptransactioncard: React.FC = () => {
                 return;
             }
 
-            toast.promise(sendmoney(email, amount), {
+            toast.promise(sendmoney(email, amount*100), {
                 loading: 'Sending money...',
                 success: (res) => {
                     console.log(res)
