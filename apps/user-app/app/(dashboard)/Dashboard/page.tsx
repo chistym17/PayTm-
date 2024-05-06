@@ -45,7 +45,6 @@ export async function getOnRampTransactions() {
 }
 
 export default async function() {
-    
     const balance = await getBalance();
     const transactions = await getOnRampTransactions();
     const data = await getp2ptransactions();
