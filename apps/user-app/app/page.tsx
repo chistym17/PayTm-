@@ -53,9 +53,7 @@ const page = async () => {
 
       <div className="mt-20 h-[800px] ">
         <SlideInFromLeft>
-
           <Feature></Feature>
-
         </SlideInFromLeft>
 
 
