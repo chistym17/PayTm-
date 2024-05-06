@@ -14,6 +14,8 @@ import { WobbleCard } from "../components/userlogin";
 import Feature from "../components/Feature";
 import Feat from "../components/Feat";
 import Footer from "../components/Footer";
+import SlideInFromLeft from "../components/animations/SlideLeft.";
+import SlideInFromRight from "../components/animations/SlideRight";
 
 
 const navItems = [
@@ -24,11 +26,11 @@ const navItems = [
 
 
 
-const page = async() => {
+const page = async () => {
   return (
     <div className="max-w-6xl mx-auto">
       <AppBar navItems={navItems} className="" />
-  
+
       <div className=" max-w-6xl  h-[100vh] mx-auto  ">
 
         <div>
@@ -49,18 +51,27 @@ const page = async() => {
       </div>
 
 
-      <div className="mt-20 ">
-        <Feature></Feature>
-        <Feat></Feat>
+      <div className="mt-20 h-[800px] ">
+        <SlideInFromLeft>
+
+          <Feature></Feature>
+
+        </SlideInFromLeft>
+
+
+
+        <SlideInFromRight>
+          <Feat></Feat>
+
+        </SlideInFromRight>
+
+      </div>
+      <div className=" mt-16">
+
+        <Footer></Footer>
 
 
       </div>
-      <div className="bg-black">
-
-
-
-      </div>
-      <Footer></Footer>
 
     </div>
   );

@@ -14,8 +14,8 @@ const theme = {
 
 
 export const metadata: Metadata = {
-  title: "paytm-user",
-  description: "paytm-userp",
+  title: "Paytmlink",
+  description: "Paylink",
 };
 
 export default function RootLayout({
