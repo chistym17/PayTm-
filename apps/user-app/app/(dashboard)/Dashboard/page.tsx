@@ -5,6 +5,9 @@ import { authOptions } from "../../lib/auth";
 import AddMoneyCard from "../../../components/AddMoney";
 import {  PrismaClient } from "@prisma/client";
 import createwallet from "../../../components/createwallet";
+import DashTab from "./components/DashTab";
+import getp2ptransactions from "../../../lib/actions/getp2ptransactions";
+import getreceivedtransactions from "../../../lib/actions/showreceivedtrx";
 
 const prisma=new PrismaClient()
 
@@ -42,23 +45,15 @@ export async function getOnRampTransactions() {
 }
 
 export default async function() {
+    
     const balance = await getBalance();
     const transactions = await getOnRampTransactions();
+    const data = await getp2ptransactions();
+    const received=await getreceivedtransactions()
+    
+
 
     return <div className="w-screen">
-        <div className="text-4xl text-[#6a51a6] pt-8 mb-8 font-bold">
-            Transfer
-        </div>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 p-4">
-            <div>
-                <AddMoneyCard />
-            </div>
-            <div>
-                <BalanceCard amount={balance.amount} locked={balance.locked} />
-                <div className="pt-4">
-                    <OnRampTransactions transactions={transactions} />
-                </div>
-            </div>
-        </div>
+       <DashTab  balanceData={balance} transactionsData={transactions} p2pdata={data} received={received}></DashTab>
     </div>
 }
