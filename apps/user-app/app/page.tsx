@@ -1,16 +1,9 @@
+//@ts-nocheck
 "use client"
-
-import { getServerSession } from "next-auth";
-import { redirect } from 'next/navigation'
-import { authOptions } from "./lib/auth";
-import Navbar from "../components/Navbar";
-import { Hero } from "../components/Hero";
 import './globals.css'
 import { AppBar } from "../components/Appbar";
-import { Cards } from "../components/Cards";
 import Typewriter from "../components/TypeAnimation";
 import UserBar from "../components/userbar";
-import { WobbleCard } from "../components/userlogin";
 import Feature from "../components/Feature";
 import Feat from "../components/Feat";
 import Footer from "../components/Footer";

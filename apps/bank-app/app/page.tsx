@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 "use client"
 
 import React from 'react';
@@ -7,7 +9,7 @@ import { ClearCookies } from '../lib/actions/clearcookies';
 
 const BankingPage = () => {
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const amount = e.target.amount.value;
         if (!amount) {

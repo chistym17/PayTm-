@@ -1,8 +1,5 @@
-import { BalanceCard } from "../../../components/BalanceCard";
-import { OnRampTransactions } from "../../../components/OnRampTransactions";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../lib/auth";
-import AddMoneyCard from "../../../components/AddMoney";
 import {  PrismaClient } from "@prisma/client";
 import createwallet from "../../../components/createwallet";
 import DashTab from "./components/DashTab";
@@ -10,26 +7,36 @@ import getp2ptransactions from "../../../lib/actions/getp2ptransactions";
 import getreceivedtransactions from "../../../lib/actions/showreceivedtrx";
 
 const prisma=new PrismaClient()
+interface Balance {
+    amount: number;   
+    locked: number;   
+}
+ async function getBalance(): Promise<Balance | null> {
+    const session = await getServerSession(authOptions); 
+    
+    if (!session || !session.user || !session.user.id) {
+        throw new Error("Invalid session or missing user id");
+    }
 
-export async function getBalance() {
-    const session = await getServerSession(authOptions);
     const balance = await prisma.balance.findFirst({
         where: {
-            userId: Number(session?.user?.id)
+            userId: Number(session.user.id)
         }
     });
-    if(!balance)
-        {
-           const res= await createwallet()
 
-        }
-    return {
-        amount: balance?.amount || 0,
-        locked: balance?.locked || 0
+    if (!balance) {
+        await createwallet();
+        return null; 
     }
+
+    return {
+        amount: balance.amount || 0, 
+        locked: balance.locked || 0  
+    };
 }
 
-export async function getOnRampTransactions() {
+
+ async function getOnRampTransactions() {
     const session = await getServerSession(authOptions);
     const txns = await prisma.onRampTransaction.findMany({
         where: {
@@ -45,6 +52,7 @@ export async function getOnRampTransactions() {
 }
 
 export default async function() {
+    
     const balance = await getBalance();
     const transactions = await getOnRampTransactions();
     const data = await getp2ptransactions();
