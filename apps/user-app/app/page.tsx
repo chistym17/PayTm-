@@ -49,8 +49,6 @@ const page = async () => {
 
 
       </div>
-
-
       <div className="mt-20 h-[800px] ">
         <SlideInFromLeft>
 
