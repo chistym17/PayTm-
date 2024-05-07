@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import { SparklesCore } from "./sparkles";
 
 export function Hero() {

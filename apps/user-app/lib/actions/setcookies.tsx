@@ -1,7 +1,5 @@
 "use server"
 import { getServerSession } from 'next-auth';
-import React from 'react';
-import jwt from 'jsonwebtoken';
 import { authOptions } from '../../app/lib/auth';
 import { cookies } from 'next/headers';
 

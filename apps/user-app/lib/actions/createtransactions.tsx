@@ -1,6 +1,5 @@
 "use server"
 import { getServerSession } from 'next-auth';
-import React from 'react';
 import { authOptions } from '../../app/lib/auth';
 import { PrismaClient } from '@prisma/client';
 

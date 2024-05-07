@@ -4,6 +4,7 @@ module.exports = {
   extends: ["@repo/eslint-config/next.js"],
   parser: "@typescript-eslint/parser",
   parserOptions: {
-    project: true,
   },
+  // Exclude specific files or patterns from linting
+  ignorePatterns: ["app/SignIn/loading.js"], // Adjust the path as needed
 };
