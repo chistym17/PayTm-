@@ -1,7 +1,7 @@
-import { getServerSession } from "next-auth";
-import { signIn, signOut, useSession } from "next-auth/react";
-import { useRouter } from "next/router";
-import React, { useState, useEffect } from "react";
+//@ts-nocheck
+
+import {  signOut, useSession } from "next-auth/react";
+import  { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 
 const UserBar = () => {

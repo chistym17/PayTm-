@@ -1,9 +1,7 @@
 "use client"
-import React, { useState } from 'react';
+import { useState } from 'react';
 import createtransactions from '../lib/actions/createtransactions';
-import axios from 'axios';
 import setCookies from '../lib/actions/setcookies';
-import createwallet from './createwallet';
 import { toast } from "react-hot-toast";
 
 const AddMoneyCard: React.FC = () => {

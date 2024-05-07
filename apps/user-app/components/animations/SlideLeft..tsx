@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
-const SlideInFromLeft = ({ children, duration = 500, delay = 0 }) => {
+const SlideInFromLeft = ({ children, duration = 500}) => {
   const [shouldAnimate, setShouldAnimate] = useState(false);
   const elementRef = useRef(null);
 

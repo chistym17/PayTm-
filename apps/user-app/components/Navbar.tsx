@@ -1,9 +1,4 @@
 "use client"
-import { getServerSession } from 'next-auth';
-import React from 'react';
-import { authOptions } from '../app/lib/auth';
-import { signIn, signOut } from 'next-auth/react';
-import Userbar from './userbar';
 import Link from 'next/link';
 
 

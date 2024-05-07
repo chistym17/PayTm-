@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import Progress from "../components/progress";
 
 

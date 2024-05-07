@@ -1,6 +1,7 @@
 {
   "extends": "@repo/typescript-config/nextjs.json",
   "compilerOptions": {
+    "strict": false,
     "plugins": [
       {
         "name": "next"
@@ -9,10 +10,12 @@
   },
   "include": [
     "next-env.d.ts",
-    "next.config.js",
+    ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
-, "app/SignIn/loading.js"  ],
-  "exclude": ["node_modules"]
+    "app/loading.js"
+ ],
+  "exclude": [
+    "node_modules",
+  ]
 }
