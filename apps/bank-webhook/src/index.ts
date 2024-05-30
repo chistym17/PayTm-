@@ -1,11 +1,11 @@
 import { PrismaClient } from "@prisma/client";
 import express from "express";
 
-const app = express();
+export const app = express();
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
-const prisma = new PrismaClient();
+const prisma=new PrismaClient()
 
 app.post("/hdfcWebhook", async (req, res) => {
     const paymentInformation = {
@@ -20,14 +20,13 @@ app.post("/hdfcWebhook", async (req, res) => {
         }
     });
 
-    if (!transaction || transaction.status !== 'Processing') {
+    if (!transaction || transaction.status == 'Success') {
         return res.status(400).json({
             message: "Transaction already completed",
             error: "TransactionError"
         });
     }
 
-    console.log(paymentInformation);
     try {
         await prisma.$transaction([
             prisma.balance.update({
@@ -69,7 +68,7 @@ app.get("/health", (req, res) => {
     });
 });
 
-const PORT = 3003;
+const PORT = 3002;
 app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);
 });

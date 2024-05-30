@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { BalanceCard } from '../../../../components/BalanceCard';
 import { OnRampTransactions } from '../../../../components/OnRampTransactions';
 import { ShowP2P } from '../../../../components/showp2ptransaction';
-import { PrismaClient } from '@prisma/client';
 import { Showreceived } from './Showreceived';
 
 const DashTab = ({ balanceData, transactionsData,p2pdata,received }) => {
