@@ -21,7 +21,6 @@ const UserBar = () => {
   }
 
   const handleDashboardClick = () => {
-    toast.success('SignOut successful')
 
   }
 

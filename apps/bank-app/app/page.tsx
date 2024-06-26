@@ -32,7 +32,7 @@ const BankingPage = () => {
                     await ClearCookies()
                     toast.success('Redirecting to your wallet...')
 
-                    window.location.href = 'http://localhost:3001/transfer';
+                    window.location.href = 'http://localhost:3000/transfer';
                   }, 2000);
 
             } 
