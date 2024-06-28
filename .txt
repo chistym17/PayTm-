@@ -29,3 +29,8 @@ server {
         proxy_cache_bypass $http_upgrade;
     }
 }
+
+ssh -i Downloads\paytm-key.pem ubuntu@ec2-13-48-26-79.eu-north-1.compute.amazonaws.com
+
+-53:~$ /usr/local/bin/docker-compose --version
+Docker Compose version v2.28.1

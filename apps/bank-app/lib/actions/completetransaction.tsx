@@ -15,7 +15,7 @@ async function completetransaction(amount: number) {
             amount: amount
         };
 
-        const response = await axios.post('http://localhost:3002/hdfcWebhook', info);
+        const response = await axios.post('http://ec2-13-48-26-79.eu-north-1.compute.amazonaws.com:3002/hdfcWebhook', info);
         // console.log(response.data.data)
         return response.data; 
     } catch (error) {

@@ -26,7 +26,7 @@ const P2Ptransactioncard: React.FC = () => {
                 success: (res) => {
                     console.log(res)
                     if (res.success) {
-                        window.location.href='http://localhost:3000/p2pTransaction'
+                        window.location.href='http://ec2-13-48-26-79.eu-north-1.compute.amazonaws.com:3000/p2pTransaction'
                         return 'Money sent successfully';
                     } else {
                         throw new Error(res.message);

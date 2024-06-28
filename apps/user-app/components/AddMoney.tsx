@@ -28,7 +28,7 @@ const AddMoneyCard: React.FC = () => {
         await setCookies(res.token);
         toast.success('Transaction processing. Redirecting to bank...');
         setTimeout(() => {
-          window.location.href = 'http://localhost:3001/';
+          window.location.href = 'http://ec2-13-48-26-79.eu-north-1.compute.amazonaws.com:3001/';
         }, 2000); 
       } else {
         toast.error('Unexpected response from server');
