@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile.user
-    image: userapp # Specify the image name here
+    image: chisty17/payapp:userapp
     ports:
       - "3000:3000"
     volumes:
@@ -16,7 +16,7 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile.bank
-    image: bankapp  # Specify the image name here
+    image: chisty17/payapp:bankapp
     ports:
       - "3001:3001"
     volumes:
@@ -28,7 +28,7 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile.webhook
-    image: webhook  # Specify the image name here
+    image: chisty17/payapp:webhook
     ports:
       - "3002:3002"
     volumes:
