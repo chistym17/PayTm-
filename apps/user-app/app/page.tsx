@@ -28,7 +28,7 @@ const page = async () => {
 
         <div>
           <div className=" text-black py-20 px-4 md:px-10 text-center">
-            <h1 className="text-5xl md:text-7xl font-bold mb-4"><span className="text-purple-500 ">Pay</span></h1>
+            <h1 className="text-5xl md:text-7xl font-bold mb-4"><span className="text-purple-500 ">kahonbhuski</span></h1>
             <p className="text-lg md:text-2xl mb-8 mt-2">Your trusted platform for seamless money transfers and financial management</p>
             <div className="h-[20px]">
               <Typewriter text='Connect. Transfer. Empower'></Typewriter>
