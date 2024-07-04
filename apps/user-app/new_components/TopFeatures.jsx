@@ -1,6 +1,5 @@
 import React from 'react';
 import FeatureCard from './Cards';
-import './Paylink.css'; // Ensure to create this file for custom styles
 
 const features = [
   {
@@ -28,10 +27,10 @@ const features = [
 const TopFeatures = () => {
   return (
     <div className="max-w-6xl mx-auto py-12  sm:px-6 lg:px-8 mt-10">
-      <h2 className="text-center text-4xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl mt-3">
+      <h2 className="text-center text-4xl leading-8 font-bold tracking-tight text-gray-900 sm:text-4xl mt-10">
         Our <span className='text-gradient font-bold '>Features</span>
       </h2>
-      <div className="mt-10 flex flex-wrap justify-between">
+      <div className=" flex flex-wrap items-center justify-center h-[400px]">
         {features.map((feature, index) => (
           <FeatureCard
             key={index}

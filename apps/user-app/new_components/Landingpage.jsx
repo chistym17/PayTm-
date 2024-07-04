@@ -1,6 +1,5 @@
 import React from 'react';
-import 'tailwindcss/tailwind.css';
-import './Paylink.css'; // Ensure to create this file for custom styles
+// import './Paylink.css'; // Ensure to create this file for custom styles
 
 const LandingPage = () => {
   return (
@@ -23,7 +22,7 @@ const LandingPage = () => {
       {/* Main Section */}
       <div className="flex-grow container  px-6 py-20 flex  lg:flex-row items-center justify-center gap-8">
         <div className=" w-1/2 lg:w-1/2  px-4 rounded-lg shadow-lg  mb-8 lg:mb-0 slide-in-left lg:slide-in-right">
-          <h1 className="text-5xl lg:text-5xl font-bold mb-6 leading-tight text-white ">Fast, flexible and secure money transfers</h1>
+          <h1 className="text-4xl lg:text-5xl font-bold mb-6 leading-tight text-white ">Fast, flexible and secure money transfers</h1>
           <p className="text-lg mb-8 leading-relaxed text-white " >
             Transfer money quickly and securely to anyone, anywhere. With Paylink, your transactions are fast, secure, and easy to manage.
           </p>
