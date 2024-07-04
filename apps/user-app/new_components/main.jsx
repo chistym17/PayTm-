@@ -2,6 +2,7 @@ import React from 'react';
 import './Paylink.css'; // Ensure to create this file for custom styles
 import Bank from './Banktransfer'
 import Wallet from './Transferwallet'
+import Link from 'next/link';
 const main = () => {
     return (
         <div className=" py-12  sm:px-6 lg:px-8 mt-14">
@@ -9,9 +10,11 @@ const main = () => {
                 Complete a <span className='text-gradient font-bold' >transaction</span> in less than a minute with our app.
             </h2>
             <div className="text-center rounded-lg  mt-8 bg-gray-100">
-                <button className="w-96 bg-custom text-white font-bold py-2 px-4 rounded">
-                    Sign Up For Free
-                </button>
+            <Link href="/SignIn">
+                                <button className="w-96 bg-custom text-white font-bold py-2 px-4 rounded">
+                                    Sign Up For Free
+                                </button>
+                            </Link>
             </div>
             <div className="">
 

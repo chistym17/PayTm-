@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { CircularProgress } from "@mui/material";
-import './Paylink.css';
 
 const Bank = () => {
   const [redirecting, setRedirecting] = useState(false);
@@ -14,12 +13,12 @@ const Bank = () => {
   };
 
   return (
-    <section className="bg-white py-5">
-      <div className="">
+    <section className="py-5">
+      <div className="bg-purple-800 ">
         {/* Second Div */}
         <div className="flex   items-center justify-center">
           <div className="md:w-1/2 md:mr-4 text-center md:text-left">
-            <h2 className="text-2xl text-black font-bold mb-4">
+            <h2 className="text-3xl text-black font-bold mb-4">
               Transfer Balance to Your Wallet
             </h2>
             <p className="text-black mb-6">

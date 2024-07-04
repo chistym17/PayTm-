@@ -8,6 +8,7 @@ import SlideInFromLeft from '../components/animations/SlideLeft.';
 import Feature from '../components/Feature';
 import SlideInFromRight from '../components/animations/SlideRight';
 import Feat from '../components/Feat';
+import Signup from "../new_components/SignUp"
 
 import Main from '../new_components/main'
 const navItems = [
@@ -38,6 +39,7 @@ const page = async () => {
         <Main></Main>
 
       </div>
+
 
     </div>
   );

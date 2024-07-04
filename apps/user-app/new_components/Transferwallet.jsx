@@ -1,16 +1,25 @@
 import  { useState } from "react";
 import { CircularProgress } from "@mui/material";
 import './Paylink.css'; // Ensure to create this file for custom styles
+import { useSession } from "next-auth/react";
+import toast from "react-hot-toast";
 
 const Wallet = () => {
+  const { data: session, status } = useSession();
   const [redirecting, setRedirecting] = useState(false);
-
+  console.log(session,status)
   const handleButtonClick = () => {
-    setRedirecting(true);
+    if (status === 'loading') return; // Wait until session data is loaded
 
-    setTimeout(() => {
+    if (!session) {
+      toast.error("You must be logged in.");
+      setRedirecting(true);
+      setTimeout(() => {
+        window.location.href = "/SignIn";
+      }, 1000);
+    } else {
       window.location.href = "/p2pTransaction";
-    }, 1000); 
+    }
   };
 
   return (
@@ -31,7 +40,7 @@ const Wallet = () => {
           </div>
 
           <div className="md:w-1/2 md:mr-4  mt-10 text-center md:text-left ">
-            <h2 className="text-2xl text-black font-semibold mb-4">
+            <h2 className="text-3xl text-black font-semibold mb-4">
               Send Money to Someone
             </h2>
             <p className="text-black mb-6">
