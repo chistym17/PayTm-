@@ -27,7 +27,7 @@ const Signup = () => {
       console.log('Sign-in successful!');
       toast.success("SignIn Successful.")
       setTimeout(() => {
-        window.location.href = '/';
+        window.location.href = 'http://ec2-13-48-26-79.eu-north-1.compute.amazonaws.com:3000';
       }, 2000); 
     } else {
       toast.error("Error.Try Again.")
