@@ -42,10 +42,19 @@ const AddMoneyCard: React.FC = () => {
   
 
   return (
-    <div className="w-96 mx-auto mt-8 p-6 bg-purple-300 rounded-lg shadow-md">
+    <div className="w-128 mx-auto mt-8 p-6 bg-purple-300 rounded-lg shadow-md">
       <h2 className="text-lg font-bold mb-4 text-black text-center">Add Money</h2>
       <div>
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="amount">
+      <label className="block text-gray-700 text-sm font-bold mb-2">
+           Name
+        </label>
+        <input
+          className="w-full bg-white text-black px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-500"
+          type="text"
+          placeholder="Enter name"
+        />
+
+        <label className="block text-gray-700 mt-2 text-sm font-bold mb-2" htmlFor="amount">
           Amount
         </label>
         <input
@@ -57,7 +66,7 @@ const AddMoneyCard: React.FC = () => {
         />
       </div>
       <div className="mt-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="bankOption">
+        <label className="block text-gray-700 text-sm mt-2 font-bold mb-2" htmlFor="bankOption">
           Bank Option
         </label>
         <select
