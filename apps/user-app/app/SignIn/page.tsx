@@ -1,12 +1,14 @@
 "use client"
 import React, { useState } from 'react';
-import { signIn } from 'next-auth/react';
 import toast from 'react-hot-toast';
 
-export default function SignIn  ()  {
-  const [name, setName] = useState('');
+import './Signup.css';
+import { signIn } from 'next-auth/react';
+const Signup = () => {
+  const [name, setname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -33,29 +35,43 @@ export default function SignIn  ()  {
     }
   };
 
+
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="w-96 bg-white p-8 rounded-xl border border-black">
-        <h2 className="text-2xl font-semibold mb-4 text-center">Sign In</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label htmlFor="name" className="block text-black text-sm font-medium">Name</label>
-            <input type="text" id="name" className="form-input rounded-lg mt-1 block w-full border border-black" value={name} onChange={(e) => setName(e.target.value)} />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="email" className="block text-black text-sm font-medium">Email</label>
-            <input type="email" id="email" className="form-input rounded-lg mt-1 block w-full border border-black" value={email} onChange={(e) => setEmail(e.target.value)} />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="password" className="block text-black text-sm font-medium">Password</label>
-            <input type="password" id="password" className="form-input rounded-lg mt-1 block w-full border border-black" value={password} onChange={(e) => setPassword(e.target.value)} />
-          </div>
-          <div className="text-center">
-            <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md shadow-md transition duration-300">Sign In</button>
-          </div>
-        </form>
-      </div>
+    <body>
+    <div className="card w-96 p-10 text-center text-white">
+      <h1 className="text-2xl text-blue-600 font-extrabold mb-4">Welcome to PayLink</h1>
+      <p className="mb-6 text-white">Transfer money quickly and securely with Paylink.</p>
+      <input
+        type="text"
+        placeholder="Name"
+        className="input w-full p-3 mb-4 rounded-lg focus:outline-none"
+        value={name}
+        onChange={(e) => setname(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Email"
+        className="input w-full p-3 mb-4 rounded-lg focus:outline-none"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <input
+        type="password"
+        placeholder="PASSWORD"
+        className="input w-full p-3 mb-6 rounded-lg focus:outline-none"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <button
+        className="btn bg-gradient-to-r from-purple-600 to-blue-600 text-white w-full py-3 rounded-lg border-none font-semibold hover:from-purple-700 hover:to-blue-700"
+        onClick={handleSubmit}
+      >
+        SIGN IN
+      </button>
+    
     </div>
+    </body>
   );
 };
 
+export default Signup;

@@ -1,5 +1,5 @@
 //@ts-nocheck
-import { BalanceCard } from "../../../components/BalanceCard";
+import  BalanceCircle  from "../../../components/BalanceCircle";
 import { OnRampTransactions } from "../../../components/OnRampTransactions";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../lib/auth";
@@ -44,21 +44,18 @@ export async function getOnRampTransactions() {
 
 export default async function() {
     const balance = await getBalance();
-    const transactions = await getOnRampTransactions();
 
     return <div className="w-screen">
-        <div className="text-4xl text-[#6a51a6] pt-8 mb-8 font-bold">
-            Transfer
+        <div className="text-4xl text-[#6a51a6] pt-8 mb-8 font-bold text-center">
+            Transfer money to your Wallet
         </div>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 p-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 items-center p-4">
             <div>
                 <AddMoneyCard />
             </div>
             <div>
-                <BalanceCard amount={balance.amount} locked={balance.locked} />
-                <div className="pt-4">
-                    <OnRampTransactions transactions={transactions} />
-                </div>
+                <BalanceCircle balance={balance.amount} />
+             
             </div>
         </div>
     </div>
