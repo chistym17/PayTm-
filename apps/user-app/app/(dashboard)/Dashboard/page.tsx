@@ -1,19 +1,22 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../lib/auth";
-import {  PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 import createwallet from "../../../components/createwallet";
-import DashTab from "./components/DashTab";
 import getp2ptransactions from "../../../lib/actions/getp2ptransactions";
 import getreceivedtransactions from "../../../lib/actions/showreceivedtrx";
-
-const prisma=new PrismaClient()
+import TotalBalanceBox from './components/TotalBalanceBox'
+import HeaderBox from './components/Headerbox'
+import RightSidebar from './components/RightSidebar'
+import '../../globals.css'
+import DashTab from "./components/DashTab";
+const prisma = new PrismaClient()
 interface Balance {
-    amount: number;   
-    locked: number;   
+    amount: number;
+    locked: number;
 }
- async function getBalance(): Promise<Balance | null> {
-    const session = await getServerSession(authOptions); 
-    
+async function getBalance(): Promise<Balance | null> {
+    const session = await getServerSession(authOptions);
+
     if (!session || !session.user || !session.user.id) {
         throw new Error("Invalid session or missing user id");
     }
@@ -26,17 +29,17 @@ interface Balance {
 
     if (!balance) {
         await createwallet();
-        return null; 
+        return null;
     }
 
     return {
-        amount: balance.amount || 0, 
-        locked: balance.locked || 0  
+        amount: balance.amount || 0,
+        locked: balance.locked || 0
     };
 }
 
 
- async function getOnRampTransactions() {
+async function getOnRampTransactions() {
     const session = await getServerSession(authOptions);
     const txns = await prisma.onRampTransaction.findMany({
         where: {
@@ -51,16 +54,37 @@ interface Balance {
     }))
 }
 
-export default async function() {
-    
+export default async function () {
+    const session = await getServerSession(authOptions)
     const balance = await getBalance();
     const transactions = await getOnRampTransactions();
     const data = await getp2ptransactions();
-    const received=await getreceivedtransactions()
-    
+    const received = await getreceivedtransactions()
 
+    console.log(session)
 
-    return <div className="w-screen">
-       <DashTab  balanceData={balance} transactionsData={transactions} p2pdata={data} received={received}></DashTab>
-    </div>
+    return (
+        <div className="">
+            <div className="flex-1 p-8">
+                <header className="py-4">
+                    <HeaderBox
+                        type="greeting"
+                        title="Welcome"
+                        user={session?.user?.name}
+                        subtext="Access and manage your account and transactions efficiently."
+                    />
+
+                    <TotalBalanceBox
+                        // accounts={accounts}
+                        // totalBanks={accounts?.totalBanks}
+                        totalCurrentBalance={balance.amount}
+                    />
+                </header>
+            </div>
+            <DashTab transactionsData={transactions} p2pdata={data} received={received}></DashTab>
+            <RightSidebar 
+                user={session?.user}
+            />
+        </div>
+    )
 }

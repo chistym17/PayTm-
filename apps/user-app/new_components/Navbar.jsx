@@ -32,7 +32,7 @@ const Navbar = () => {
                         <>
                             <div className="flex items-center space-x-4">
                                 <span className="rounded-full  px-3 py-3 text-xl md:text-xl">Welcome, {name}</span>
-                                <a href="/dashboard" className="hover:underline text-base md:text-lg flex items-center"><i className="fas fa-tachometer-alt mr-2"></i>Dashboard</a>
+                                <a href="/Dashboard" className="hover:underline text-base md:text-lg flex items-center"><i className="fas fa-tachometer-alt mr-2"></i>Dashboard</a>
                                 <button 
                                     onClick={handlesignout} 
                                     className="hover:underline text-base md:text-lg border border-white px-3 py-3 rounded-md">
