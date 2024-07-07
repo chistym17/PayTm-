@@ -9,7 +9,7 @@ const Navbar = () => {
     const handlesignout = () => {
         signOut()
         toast.success('SignOut successful')
-    
+        window.location.href='http://ec2-13-48-26-79.eu-north-1.compute.amazonaws.com:3000'
       }
     
     return (

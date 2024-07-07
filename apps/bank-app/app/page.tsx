@@ -19,7 +19,7 @@ const BankingPage = () => {
     
         try {
             toast.success('Processing...');
-            const response = await completetransaction(amount*100);
+            const response = await completetransaction(amount);
             console.log(response)
             if (response.message === "Not Authorized") {
                 toast.error('Not Authorized');
