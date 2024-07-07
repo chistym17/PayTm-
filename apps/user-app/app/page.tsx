@@ -11,6 +11,7 @@ import Feat from '../components/Feat';
 import Signup from "../new_components/SignUp"
 
 import Main from '../new_components/main'
+import Footer from '../components/Footer';
 const navItems = [
   { name: "Home", link: "/" },
   { name: "Transfer", link: "/transfer" },
@@ -39,7 +40,7 @@ const page = async () => {
         <Main></Main>
 
       </div>
-
+   <Footer></Footer>
 
     </div>
   );

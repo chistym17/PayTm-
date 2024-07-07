@@ -1,32 +1,21 @@
 "use client"
-import { useSession } from 'next-auth/react';
 import React, { useState } from 'react';
-import { BalanceCard } from '../../../../components/BalanceCard';
 import { OnRampTransactions } from '../../../../components/OnRampTransactions';
 import { ShowP2P } from '../../../../components/showp2ptransaction';
 import { Showreceived } from './Showreceived';
+import TransactionsTable from './Table'
+const DashTab = ({  transactionsData,p2pdata,received }) => {
 
-const DashTab = ({ balanceData, transactionsData,p2pdata,received }) => {
-
-    console.log(balanceData, transactionsData)
-    const user = useSession()
-    const [activeTab, setActiveTab] = useState('balance');
+    console.log( transactionsData)
+    const [activeTab, setActiveTab] = useState('transactions');
 
   
     return (
-        <div className="p-8 w-full">
-            <div>
-                <h2 className="text-4xl mb-4 text-center font-semibold text-purple-500">Welcome, {user.data?.user.name}!</h2>
-                <p className="text-lg mb-4 text-center text-blue-500">Email: {user.data?.user.email}</p>
-            </div>
-            <div className="mt-8">
+        <div className=" w-full">
+         
+            <div className="">
                 <div className="flex space-x-4 items-center justify-center">
-                    <button
-                        onClick={() => setActiveTab('balance')}
-                        className={`py-2 px-4 ${activeTab === 'balance' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'} rounded-md`}
-                    >
-                        Balance
-                    </button>
+                    
                     <button
                         onClick={() => setActiveTab('transactions')}
                         className={`py-2 px-4 ${activeTab === 'transactions' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'} rounded-md`}
@@ -49,24 +38,19 @@ const DashTab = ({ balanceData, transactionsData,p2pdata,received }) => {
                     </button>
                 </div>
                 <div className="mt-8">
-                    {/* Render content based on active tab */}
-                    {activeTab === 'balance' &&
-
-                        <BalanceCard amount={balanceData.amount} locked={balanceData.locked} />
-
-                    }
+                
                     {activeTab === 'transactions' &&
-                        <OnRampTransactions transactions={transactionsData} />
+                        <TransactionsTable transactions={transactionsData} />
 
 
                     }
                      {activeTab === 'receive' &&
-                     <Showreceived transactions={received}></Showreceived>
+                     <TransactionsTable transactions={received}/>
 
                     }
                      {activeTab === 'sent' &&
 
-                         <ShowP2P transactions={p2pdata}></ShowP2P>
+                         <TransactionsTable transactions={p2pdata}/>
                     }
                 </div>
             </div>
