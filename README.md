@@ -1,81 +1,72 @@
-# Turborepo starter
+# PayLink - Secure Wallet Application
 
-This is an official starter Turborepo.
+**PayLink** is a secure and user-friendly wallet application designed to facilitate seamless money transfers between a user's bank account and their wallet, as well as within the platform itself. The application is built with a focus on security, scalability, and efficient real-time transaction processing.
 
-## Using this example
+## Table of Contents
+- [Features](#features)
+- [Architecture](#architecture)
+- [Technology Stack](#technology-stack)
+- [Usage](#usage)
+- [Deployment](#deployment)
 
-Run the following command:
+## Features
 
-```sh
-npx create-turbo@latest
-```
+- **Fund Transfers:** Easily transfer funds between your bank account and PayLink wallet.
+- **In-Platform Transactions:** Send and receive money within the platform securely.
+- **Real-Time Processing:** Transactions are processed in real-time using a dedicated webhook service.
+- **User Authentication:** Secure login and authentication using NextAuth.
+- **Automated Deployments:** CI/CD pipelines ensure seamless updates and deployments.
+- **Scalability:** Deployed on AWS EC2 for handling large-scale transactions.
 
-## What's inside?
+## Architecture
 
-This Turborepo includes the following packages/apps:
+PayLink follows a 3-tier architecture to ensure secure and efficient transaction processing:
 
-### Apps and Packages
+1. **User App:** The front-end interface where users manage their accounts, transfer funds, and perform transactions.
+2. **Bank App (Simulated):** A simulated bank application that interfaces with the User App to process fund transfers securely.
+3. **Bank Webhook:** A dedicated service for handling real-time transaction notifications and processing them efficiently.
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+This architecture ensures that transactions are processed securely and that the application can scale as needed to handle a growing user base.
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+## Technology Stack
 
-### Utilities
+- **Frontend:**
+  - Next.js
+  - Tailwind CSS
+  - NextAuth for authentication
+- **Backend:**
+  - Express.js
+  - Prisma ORM for database management
+  - PostgreSQL as the primary database
+- **DevOps & Deployment:**
+  - Docker for containerization
+  - AWS EC2 for scalable deployment
+  - GitHub Actions for CI/CD pipeline
 
-This Turborepo has some additional tools already setup for you:
+## Usage
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+1. **Sign Up / Login:** 
+   - Users can sign up or log in using their credentials.
 
-### Build
+2. **Add Bank Account:** 
+   - Link your bank account to your PayLink wallet.
 
-To build all apps and packages, run the following command:
+3. **Transfer Funds:** 
+   - Easily transfer funds between your bank account and wallet.
 
-```
-cd my-turborepo
-pnpm build
-```
+4. **Send/Receive Money:** 
+   - Use the in-platform feature to securely send or receive money from other users.
 
-### Develop
+## Deployment
 
-To develop all apps and packages, run the following command:
+To deploy PayLink on AWS EC2:
 
-```
-cd my-turborepo
-pnpm dev
-```
+1. **Dockerize the Application:**
+   - Ensure all services are properly containerized using Docker.
 
-### Remote Caching
+2. **Set Up AWS EC2 Instance:**
+   - Launch an EC2 instance and configure security groups, SSH access, and other necessary settings.
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+3. **Deploy Using CI/CD Pipeline:**
+   - Use GitHub Actions to automate the build and deployment process to the EC2 instance.
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
